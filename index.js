@@ -5,4 +5,4 @@ const app = express();
 
 app.get("/", (req, res) => res.json({status: "NTask API"}));
 
-app.listen(PORT, () => console.log('NTask API - Port ${PORT}'));
+app.listen(PORT, () => console.log(`NTask API - Port ${PORT}`));
