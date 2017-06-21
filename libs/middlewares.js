@@ -5,6 +5,7 @@ module.exports = app => {
   app.set("port", PORT);
   app.set("json s[aces", 4);
   app.use(bodyParser.json());
+  app.use(app.auth.initialize());
   app.use((req, res, next) => {
     delete req.body.id;
     next();
