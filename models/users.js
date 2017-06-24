@@ -43,7 +43,8 @@ module.exports = (sequelize, DataType) => {
       isPassword: (encodedPassword, password) => {
         return bcrypt.compareSync(password, encodedPassword);
       }
-    }
+    },
+    timestamps: false
   });
   return Users;
 };
