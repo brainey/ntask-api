@@ -57,6 +57,17 @@ describe("Routes: Token", () => {
             done(err);
           });
       });
+      it("thows error when null password is sent", done => {
+        request.post("/token")
+          .send({
+            email: "john@email.net",
+            password: ""
+          })
+          .expect(401)
+          .end((err, res) => {
+            done(err);
+          });
+      });
     });
   });
 });
