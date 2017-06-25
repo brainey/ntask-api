@@ -5,7 +5,7 @@ module.exports = app => {
   .all(app.auth.authenticate())
   .get((req, res) => {
     Tasks.findAll({
-      where: { user_id: req.user_id }
+      where: { user_id: req.user.id }
     })
     .then(result => res.json(result))
     .catch(error => {
@@ -27,7 +27,7 @@ module.exports = app => {
     Tasks.findOne({
       where: {
         id: req.params.id,
-        user_id: req.user_id
+        user_id: req.user.id
       }})
     .then(result => {
       if (result) {
@@ -55,7 +55,7 @@ module.exports = app => {
     Tasks.destroy({
       where: {
         id: req.params.id,
-        user_id: req.user
+        user_id: req.user.id
       }})
     .then(result => res.sendStatus(204))
     .catch(error => {
