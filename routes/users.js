@@ -4,7 +4,7 @@ module.exports = app => {
   app.route("/user")
     .all(app.auth.authenticate())
     .get((req, res) => {
-      Users.findById(req.user_id, {
+      Users.findById(req.user.id, {
         attributes: ["id", "name", "email"]
       })
       .then(result => res.json(result))
@@ -13,7 +13,7 @@ module.exports = app => {
       });
     })
     .delete((req, res) => {
-      Users.destory({where: {id: req.user.id} })
+      Users.destroy({where: {id: req.user.id} })
         .then(result => res.sendStatus(204))
         .catch(error => {
           res.status(412).json({msg: error.message});
