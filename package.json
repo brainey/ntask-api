@@ -4,10 +4,18 @@
   "description": "Task list API",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js",
+    "start": "npm run apidoc && babel-node index.js",
+    "apidoc": "apidoc -i routes/ -o public/apidoc",
     "test": "NODE_ENV=test mocha test/**/*.js"
   },
-  "author": "Bill Rainey <braineyone@email.com>",
+  "apidoc": {
+    "name": "Node Task API - Documentation",
+    "template": {
+      "forceLanguage": "en",
+      "withCompare": false
+    }
+  },
+  "author": "Bill Rainey <braineyone@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "babel-cli": "^6.5.1",
@@ -23,6 +31,7 @@
     "sqlite3": "^3.1.8"
   },
   "devDependencies": {
+    "apidoc": "^0.15.1",
     "babel-register": "^6.5.2",
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
