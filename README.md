@@ -1,7 +1,7 @@
 # building-apis-ntask-api
 Example of building a service API with Node JS and express.
 
-Working through the book 'Building APIs with Node.js'. Most of the code here comes from the chapters in that book.
+Working through the book [Building APIs with Node.js](http://www.apress.com/us/book/9781484224410#otherversion=9781484224427). Most of the code here comes from the chapters in that book.
 So far, my improvements have been:
 * Getting port number from environment variable PORT
 * Building upon example of config_test.js, added config_development.js and config_production.js.
