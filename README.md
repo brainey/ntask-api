@@ -14,3 +14,6 @@ So far, my improvements have been:
 
 Problems:
 * .expect(200) seems mostly useless in that it doesn't throw an error. Research so far points to a problem of waiting for the response and the use of Promises versus callbacks. More research is needed here to come up with a better solution. For now, added shoulds inside the end() to make sure that the status is 200 (OK) before digging into the responses.
+
+Todo:
+* create directories such as public for apidoc and possibly logs (although I think it gets created automatically by winston).
