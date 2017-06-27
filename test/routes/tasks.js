@@ -1,43 +1,44 @@
 import jwt from "jwt-simple";
 
 describe("Route: Tasks", () => {
+  const db = app.db;
   const Users = app.db.models.Users;
   const Tasks = app.db.models.Tasks;
   const jwtSecret = app.libs.config.jwtSecret;
   let token;
   let fakeTask;
   beforeEach(done => {
-    Users
-      .destroy({where: {}})
-      .then(() => Users.create({
-        name: "John",
-        email: "john@mail.net",
-        password: "12345"
-      }))
-      .then(user => {
-        Tasks
-          .destroy({where: {}})
-          .then(() => Tasks.bulkCreate([{
-            id: 1,
-            title: "Work",
-            user_id: user.id
-          }, {
-            id: 2,
-            title: "Study",
-            user_id: user.id
-          }, {
-            id: 3,
-            title: "Eat",
-            user_id: user.id
-          }, {
-            id: 4,
-            title: "Sleep",
-            user_id: user.id
-          }]))
-          .then(tasks => {
-            fakeTask = tasks[0];
-            token = jwt.encode({id: user.id}, jwtSecret);
-            done();
+    db.sequelize.sync({force: true})
+      .then(() => {
+        Users
+          .create({
+            name: "John",
+            email: "john@mail.net",
+            password: "12345"
+          })
+          .then(user => {
+            Tasks.bulkCreate([{
+                id: 1,
+                title: "Work",
+                user_id: user.id
+              }, {
+                id: 2,
+                title: "Study",
+                user_id: user.id
+              }, {
+                id: 3,
+                title: "Eat",
+                user_id: user.id
+              }, {
+                id: 4,
+                title: "Sleep",
+                user_id: user.id
+              }])
+              .then(tasks => {
+                fakeTask = tasks[0];
+                token = jwt.encode({id: user.id}, jwtSecret);
+                done();
+              });
           });
       });
   });

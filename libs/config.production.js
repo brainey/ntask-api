@@ -1,12 +1,12 @@
 import logger from "./logger.js";
 
 module.exports = {
-  database: "ntask_dev",
+  database: "ntask",
   username: "",
   password: "",
   params: {
     dialect: "sqlite",
-    storage: "ntask_dev.sqlite",
+    storage: "ntask.sqlite",
     logging: (sql) => {
       logger.info(`[${new Date()}] ${sql}`);
     },
@@ -14,7 +14,7 @@ module.exports = {
       underscored: true
     }
   },
-  port: process.env.PORT || 3000,
-  jwtSecret: "Nta$K-d3v-AP1",
+  port: process.env.PORT || 8080,
+  jwtSecret: "bso5izn7Hr",
   jwtSession: { session: false }
 };

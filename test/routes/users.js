@@ -1,20 +1,23 @@
 import jwt from "jwt-simple";
 
 describe("Routes: Users", () => {
+  const db = app.db;
   const Users = app.db.models.Users;
   const jwtSecret = app.libs.config.jwtSecret;
   let token;
   beforeEach(done => {
-    Users
-      .destroy({where: {}})
-      .then(() => Users.create({
-        name: "John",
-        email: "john@mail.net",
-        password: "12345"
-      }))
-      .then(user => {
-        token = jwt.encode({id: user.id}, jwtSecret);
-        done();
+    db.sequelize.sync({force: true})
+      .then(() => {
+        Users
+          .create({
+            name: "John",
+            email: "john@mail.net",
+            password: "12345"
+          })
+          .then(user => {
+            token = jwt.encode({id: user.id}, jwtSecret);
+            done();
+          });
       });
   });
   describe("GET /user", () => {

@@ -1,17 +1,20 @@
 // import chai from "chai";
 // expect = chai.expect;
 describe("Routes: Token", () => {
+  const db = app.db;
   const Users = app.db.models.Users;
   describe("POST /token", () => {
     beforeEach(done => {
-      Users
-        .destroy({where: {}})
-        .then(() => Users.create({
-          name: "John",
-          email: "john@mail.net",
-          password: "12345"
-        }))
-        .then(() => done());
+      db.sequelize.sync({force: true})
+        .then(() => {
+          Users
+            .create({
+              name: "John",
+              email: "john@mail.net",
+              password: "12345"
+            })
+            .then(() => done());
+        });
     });
     describe("status 200", () => {
       it("returns authenticated user token", done => {
