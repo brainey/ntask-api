@@ -1,4 +1,4 @@
-# building-apis-ntask-api
+# ntask-api
 Example of building a service API with Node JS and express.
 
 This project follows my progress of working through the book [Building APIs with Node.js](http://www.apress.com/us/book/9781484224410#otherversion=9781484224427) by Caio Ribeiro Pereira.
