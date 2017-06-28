@@ -10,7 +10,7 @@ module.exports = {
       underscored: true
     }
   },
-  port: process.env.PORT || 3002,
+  port: process.env.PORT || 4000,
   jwtSecret: "NTASK_TEST",
   jwtSession: { session: false }
 };
