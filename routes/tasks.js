@@ -144,7 +144,7 @@ module.exports = app => {
     Tasks.update(req.body, {
       where: {
         id: req.params.id,
-        user_id: req.user_id
+        user_id: req.user.id
       }})
     .then(result => res.sendStatus(204))
     .catch(error => {

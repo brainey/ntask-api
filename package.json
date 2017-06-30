@@ -6,9 +6,11 @@
   "scripts": {
     "start": "npm run apidoc && npm run clusters",
     "single": "nodemon index.js --exec babel-node",
+    "debug": "nodemon --debug index.js --exec babel-node",
     "clusters": "babel-node clusters.js",
     "apidoc": "apidoc -i routes/ -o public/apidoc",
-    "test": "NODE_ENV=test mocha test/**/*.js"
+    "test": "NODE_ENV=test mocha test/**/*.js",
+    "test-task-update": "USE_HTTP=1 LOGGING=1 NODE_ENV=test mocha --grep 'updates a task'  test/**/*.js"
   },
   "apidoc": {
     "name": "Node Task API - Documentation",

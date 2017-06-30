@@ -112,7 +112,21 @@ describe("Route: Tasks", () => {
             done: true
           })
           .expect(204)
-          .end((err, res) => done(err));
+          .end((err, res) => {
+             request.get(`/tasks/${fakeTask.id}`)
+                .set("Authorization", `JWT ${token}`)
+                .expect(200)
+                .end((err, res) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.status.should.to.equal(200);
+                    expect(res.statusCode).to.equal(200);
+                    expect(res.body.title).to.eql("Travel");
+                    expect(res.body.done).to.be.true;
+                    done(err);
+                });
+          });
       });
     });
     // should a 404 or something for task not found go here ?
