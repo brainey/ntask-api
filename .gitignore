@@ -1,6 +1,5 @@
-package-lock.json
+node_modules/
 npm-debug.log
-node_modules
 ntask.sqlite
 ntask_dev.sqlite
 ntask_test.sqlite
